@@ -6,23 +6,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('page-title', 'Admin Console') - GIVIA</title>
     
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <script id="tailwind-config">
+
+    {{-- Tailwind config MUST be defined before the CDN script loads --}}
+    <script>
+        tailwind = window.tailwind || {};
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
+                    colors: {
                         "surface": "#fbf8ff",
                         "on-surface": "#1a1b22",
                         "on-surface-variant": "#444653",
                         "outline-variant": "#c5c5d5",
                     },
-                    "fontFamily": {
+                    fontFamily: {
                         "display-lg": ["Inter"],
                         "body-base": ["Inter"],
                         "label-sm": ["Inter"],
@@ -33,8 +34,9 @@
                     }
                 }
             }
-        }
+        };
     </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style>
         .custom-gradient-purple {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
