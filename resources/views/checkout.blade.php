@@ -18,10 +18,13 @@
                 <!-- Left side: Form Details -->
                 <div class="lg:col-span-7 space-y-8">
                     
-                    @if ($errors->any())
+                    @if ($errors->any() || session('error'))
                         <div class="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl flex items-start gap-3">
                             <span class="material-symbols-outlined text-[20px]">error</span>
                             <div class="text-sm">
+                                @if (session('error'))
+                                    <p>{{ session('error') }}</p>
+                                @endif
                                 @foreach ($errors->all() as $error)
                                     <p>{{ $error }}</p>
                                 @endforeach
@@ -92,11 +95,11 @@
                         <div class="space-y-4">
                             <label class="relative flex items-start gap-4 p-4 border border-primary-500 bg-primary-50/50 rounded-xl cursor-pointer">
                                 <div class="flex items-center h-5">
-                                    <input type="radio" name="payment_method" value="credit_card" checked class="w-4 h-4 text-primary-600 border-slate-300 focus:ring-primary-500">
+                                    <input type="radio" name="payment_method" value="online_banking" checked class="w-4 h-4 text-primary-600 border-slate-300 focus:ring-primary-500">
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-sm font-semibold text-slate-900">Credit Card (Demo)</span>
+                                        <span class="text-sm font-semibold text-slate-900">Credit Card / Online Banking (Demo)</span>
                                         <div class="flex gap-1">
                                             <span class="material-symbols-outlined text-slate-400">credit_card</span>
                                         </div>
@@ -132,11 +135,13 @@
                         <h2 class="text-xl font-bold text-slate-900 mb-6">Order Summary</h2>
                         
                         <div class="divide-y divide-slate-100 mb-6 max-h-[40vh] overflow-y-auto pr-2">
-                            @foreach($cartItems as $item)
+                            @foreach($cart->items as $item)
                                 <div class="py-4 flex gap-4">
                                     <div class="w-16 h-16 bg-slate-50 rounded-lg overflow-hidden border border-slate-100 flex-shrink-0">
-                                        @if(isset($item['image']) && $item['image'])
-                                            <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['name'] }}" class="w-full h-full object-cover">
+                                        @if($item->product && $item->product->image_url)
+                                            <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
+                                        @elseif($item->product && $item->product->image)
+                                            <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
                                         @else
                                             <div class="w-full h-full flex items-center justify-center text-slate-300">
                                                 <span class="material-symbols-outlined text-[20px]">image</span>
@@ -144,9 +149,9 @@
                                         @endif
                                     </div>
                                     <div class="flex-1">
-                                        <h4 class="font-semibold text-slate-900 text-sm line-clamp-1">{{ $item['name'] }}</h4>
-                                        <p class="text-xs text-slate-500 mt-1">Qty: {{ $item['quantity'] }}</p>
-                                        <p class="text-sm font-bold text-slate-900 mt-1">${{ number_format($item['price'] * $item['quantity'], 2) }}</p>
+                                        <h4 class="font-semibold text-slate-900 text-sm line-clamp-1">{{ $item->product ? $item->product->name : 'Unknown Product' }}</h4>
+                                        <p class="text-xs text-slate-500 mt-1">Qty: {{ $item->quantity }}</p>
+                                        <p class="text-sm font-bold text-slate-900 mt-1">${{ number_format(($item->product ? $item->product->price : 0) * $item->quantity, 2) }}</p>
                                     </div>
                                 </div>
                             @endforeach

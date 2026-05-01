@@ -137,7 +137,7 @@ class CheckoutController extends Controller
             ]);
             
             $order->delivery()->create([
-                'status' => 'pending',
+                'status' => 'preparing',
                 'estimated_delivery' => now()->addDays(5),
                 'tracking_number' => null,
                 'current_location' => 'Processing'

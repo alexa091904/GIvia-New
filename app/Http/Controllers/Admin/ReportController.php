@@ -33,10 +33,9 @@ class ReportController extends Controller
                            ->get();
         
         // Top products
-        $topProducts = DB::table('order_items')
-                         ->join('products', 'order_items.product_id', '=', 'products.id')
-                         ->select('products.name', DB::raw('SUM(order_items.quantity) as total_sold'))
-                         ->groupBy('products.id', 'products.name')
+        $topProducts = Product::with('category')
+                         ->has('orderItems')
+                         ->withSum('orderItems as total_sold', 'quantity')
                          ->orderBy('total_sold', 'desc')
                          ->limit(10)
                          ->get();

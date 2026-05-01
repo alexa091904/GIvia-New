@@ -14,11 +14,25 @@
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@300,0,0,24&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration (Matching Stitch Design System) -->
+    <!-- Fix: Patch MutationObserver before Tailwind CDN loads to prevent null-node crash -->
     <script>
+        (function() {
+            var _MO = window.MutationObserver;
+            window.MutationObserver = function(cb) {
+                var obs = new _MO(cb);
+                var _observe = obs.observe.bind(obs);
+                obs.observe = function(target, opts) {
+                    if (!target || !(target instanceof Node)) return;
+                    return _observe(target, opts);
+                };
+                return obs;
+            };
+            window.MutationObserver.prototype = _MO.prototype;
+        })();
+    </script>
+    <!-- Tailwind CSS: config MUST be defined before CDN loads -->
+    <script>
+        tailwind = window.tailwind || {};
         tailwind.config = {
             theme: {
                 extend: {
@@ -59,6 +73,7 @@
             }
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         /* Glassmorphism utilities */

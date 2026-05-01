@@ -3,8 +3,8 @@
 @section('title', 'My Profile')
 
 @section('content')
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="pt-28 pb-12 bg-slate-50 min-h-screen">
+    <div class="max-w-[1280px] mx-auto sm:px-6 lg:px-8">
         <!-- Profile Header -->
         <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl shadow-lg mb-8 overflow-hidden">
             <div class="px-6 py-8">

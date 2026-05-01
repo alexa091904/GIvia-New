@@ -27,8 +27,8 @@
             <!-- Product Images -->
             <div class="space-y-4">
                 <div class="aspect-square bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden relative group">
-                    @if($product->image)
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" id="main-image">
+                    @if($product->image_url || $product->image)
+                        <img src="{{ $product->image_url ?? asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" id="main-image">
                     @else
                         <div class="w-full h-full flex items-center justify-center text-slate-300">
                             <span class="material-symbols-outlined text-8xl">image</span>

@@ -123,6 +123,8 @@
                     <div class="w-10 h-10 rounded-lg bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center text-slate-400">
                         @if($product->image_url)
                             <img src="{{ $product->image_url }}" class="w-full h-full object-cover">
+                        @elseif($product->image)
+                            <img src="{{ asset('storage/' . $product->image) }}" class="w-full h-full object-cover">
                         @else
                             <span class="material-symbols-outlined text-[20px]">image</span>
                         @endif

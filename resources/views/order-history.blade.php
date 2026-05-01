@@ -3,8 +3,8 @@
 @section('title', 'My Orders')
 
 @section('content')
-<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen bg-slate-50 pt-28 pb-12">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Page Header -->
         <div class="mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">My Orders</h1>

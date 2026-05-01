@@ -10,6 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
+    {{-- Fix: Patch MutationObserver before Tailwind CDN loads to prevent null-node crash --}}
+    <script>
+        (function() {
+            var _MO = window.MutationObserver;
+            window.MutationObserver = function(cb) {
+                var obs = new _MO(cb);
+                var _observe = obs.observe.bind(obs);
+                obs.observe = function(target, opts) {
+                    if (!target || !(target instanceof Node)) return;
+                    return _observe(target, opts);
+                };
+                return obs;
+            };
+            window.MutationObserver.prototype = _MO.prototype;
+        })();
+    </script>
     {{-- Tailwind config MUST be defined before the CDN script loads --}}
     <script>
         tailwind = window.tailwind || {};

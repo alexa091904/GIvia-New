@@ -125,8 +125,8 @@
                 @foreach($featuredProducts as $product)
                     <a href="{{ route('products.show', $product->id) }}" class="group bg-white rounded-2xl p-4 transition-all hover:shadow-glass border border-slate-100 flex flex-col h-full">
                         <div class="relative aspect-square rounded-xl overflow-hidden mb-4 bg-slate-50">
-                            @if($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            @if($product->image_url || $product->image)
+                                <img src="{{ $product->image_url ?? asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             @else
                                 <div class="w-full h-full flex items-center justify-center text-slate-300">
                                     <span class="material-symbols-outlined text-6xl">image</span>

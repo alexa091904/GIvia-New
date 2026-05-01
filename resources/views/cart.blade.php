@@ -7,120 +7,122 @@
     <div class="max-w-[1280px] mx-auto px-6">
         <h1 class="text-3xl font-bold text-slate-900 tracking-tight mb-8">Shopping Cart</h1>
 
+        @if($cart && $cart->items->count() > 0)
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12" id="cart-container">
             <!-- Left side: Cart Items -->
             <div class="lg:col-span-2">
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-glass overflow-hidden">
-                    
-                    @if($cart && $cart->items->count() > 0)
-                        <div class="hidden sm:grid grid-cols-12 gap-4 p-6 border-b border-slate-100 bg-slate-50/50">
-                            <div class="col-span-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">Product</div>
-                            <div class="col-span-3 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Quantity</div>
-                            <div class="col-span-3 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Total</div>
-                        </div>
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] overflow-hidden">
+                    <div class="hidden sm:grid grid-cols-12 gap-4 p-6 border-b border-slate-100 bg-slate-50/50">
+                        <div class="col-span-6 text-xs font-bold text-slate-500 uppercase tracking-wider">Product</div>
+                        <div class="col-span-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Quantity</div>
+                        <div class="col-span-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Total</div>
+                    </div>
 
-                        <div class="divide-y divide-slate-100" id="cart-items-list">
-                            @foreach($cart->items as $item)
-                                <div class="p-6 grid grid-cols-1 sm:grid-cols-12 gap-6 items-center cart-item" data-id="{{ $item->id }}">
-                                    <!-- Product Info -->
-                                    <div class="col-span-1 sm:col-span-6 flex items-center gap-4">
-                                        <a href="{{ route('products.show', $item->product_id) }}" class="w-20 h-20 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0 border border-slate-100">
-                                            @if($item->product->image)
-                                                <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
-                                            @else
-                                                <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                                    <span class="material-symbols-outlined text-2xl">image</span>
-                                                </div>
-                                            @endif
-                                        </a>
-                                        <div>
-                                            <a href="{{ route('products.show', $item->product_id) }}" class="font-semibold text-slate-900 hover:text-primary-600 transition-colors">{{ $item->product->name }}</a>
-                                            <div class="text-sm text-slate-500 mt-1">${{ number_format($item->product->price, 2) }}</div>
-                                            
-                                            <!-- Mobile Remove -->
-                                            <button onclick="removeFromCart({{ $item->id }})" class="sm:hidden text-xs text-rose-500 font-medium hover:text-rose-600 mt-2 flex items-center gap-1">
-                                                <span class="material-symbols-outlined text-[14px]">delete</span> Remove
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Quantity -->
-                                    <div class="col-span-1 sm:col-span-3 flex items-center sm:justify-center">
-                                        <div class="w-28 bg-slate-50 border border-slate-200 rounded-lg p-1 flex items-center justify-between">
-                                            <button onclick="updateCart({{ $item->id }}, -1)" class="w-7 h-7 flex items-center justify-center rounded text-slate-500 hover:bg-white hover:shadow-sm transition-all">
-                                                <span class="material-symbols-outlined text-[16px]">remove</span>
-                                            </button>
-                                            <span class="w-8 text-center text-slate-900 font-medium text-sm item-qty">{{ $item->quantity }}</span>
-                                            <button onclick="updateCart({{ $item->id }}, 1)" class="w-7 h-7 flex items-center justify-center rounded text-slate-500 hover:bg-white hover:shadow-sm transition-all">
-                                                <span class="material-symbols-outlined text-[16px]">add</span>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Total & Remove -->
-                                    <div class="col-span-1 sm:col-span-3 flex items-center justify-between sm:justify-end gap-4">
-                                        <div class="font-bold text-slate-900 item-total">${{ number_format($item->product->price * $item->quantity, 2) }}</div>
-                                        <button onclick="removeFromCart({{ $item->id }})" class="hidden sm:flex w-8 h-8 items-center justify-center rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-500 transition-colors" title="Remove item">
-                                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                    <div class="divide-y divide-slate-100" id="cart-items-list">
+                        @foreach($cart->items as $item)
+                            <div class="p-6 grid grid-cols-1 sm:grid-cols-12 gap-6 items-center cart-item" data-id="{{ $item->id }}">
+                                <!-- Product Info -->
+                                <div class="col-span-1 sm:col-span-6 flex items-center gap-4">
+                                    <a href="{{ route('products.show', $item->product_id) }}" class="w-20 h-20 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0 border border-slate-100">
+                                        @if($item->product->image_url || $item->product->image)
+                                            <img src="{{ $item->product->image_url ?? asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
+                                        @else
+                                            <div class="w-full h-full flex items-center justify-center text-slate-300">
+                                                <span class="material-symbols-outlined text-2xl">image</span>
+                                            </div>
+                                        @endif
+                                    </a>
+                                    <div>
+                                        <a href="{{ route('products.show', $item->product_id) }}" class="font-bold text-slate-900 hover:text-slate-600 transition-colors line-clamp-1">{{ $item->product->name }}</a>
+                                        <div class="text-sm font-semibold text-slate-500 mt-1">${{ number_format($item->product->price, 2) }}</div>
+                                        
+                                        <!-- Mobile Remove -->
+                                        <button onclick="removeFromCart({{ $item->id }})" class="sm:hidden text-xs text-rose-500 font-bold hover:text-rose-600 mt-2 flex items-center gap-1 transition-colors">
+                                            <span class="material-symbols-outlined text-[14px]">delete</span> Remove
                                         </button>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-                    @else
-                        <div class="p-16 flex flex-col items-center justify-center text-center">
-                            <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-6">
-                                <span class="material-symbols-outlined text-5xl">shopping_cart</span>
+
+                                <!-- Quantity -->
+                                <div class="col-span-1 sm:col-span-3 flex items-center sm:justify-center">
+                                    <div class="w-28 bg-slate-50 border border-slate-200 rounded-xl p-1 flex items-center justify-between">
+                                        <button onclick="updateCart({{ $item->id }}, -1)" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all font-bold">
+                                            <span class="material-symbols-outlined text-[16px]">remove</span>
+                                        </button>
+                                        <span class="w-8 text-center text-slate-900 font-bold text-sm item-qty">{{ $item->quantity }}</span>
+                                        <button onclick="updateCart({{ $item->id }}, 1)" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all font-bold">
+                                            <span class="material-symbols-outlined text-[16px]">add</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Total & Remove -->
+                                <div class="col-span-1 sm:col-span-3 flex items-center justify-between sm:justify-end gap-4">
+                                    <div class="font-black text-slate-900 item-total">${{ number_format($item->product->price * $item->quantity, 2) }}</div>
+                                    <button onclick="removeFromCart({{ $item->id }})" class="hidden sm:flex w-10 h-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-all" title="Remove item">
+                                        <span class="material-symbols-outlined text-[20px]">delete</span>
+                                    </button>
+                                </div>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Your cart is empty</h3>
-                            <p class="text-slate-500 mb-8 max-w-sm">Looks like you haven't added any products to your cart yet.</p>
-                            <a href="{{ route('products.index') }}" class="px-8 py-3 bg-slate-900 hover:bg-primary-600 text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/10 hover:shadow-primary-600/20">
-                                Start Shopping
-                            </a>
-                        </div>
-                    @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
             <!-- Right side: Summary -->
-            @if($cart && $cart->items->count() > 0)
             <div class="lg:col-span-1">
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-glass p-8 sticky top-24">
-                    <h2 class="text-xl font-bold text-slate-900 mb-6">Order Summary</h2>
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] p-8 sticky top-28">
+                    <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+                        Order Summary
+                    </h2>
                     
                     <div class="space-y-4 text-sm text-slate-600 border-b border-slate-100 pb-6 mb-6">
                         <div class="flex justify-between items-center">
-                            <span>Subtotal</span>
-                            <span class="font-medium text-slate-900" id="summary-subtotal">${{ number_format($total, 2) }}</span>
+                            <span class="font-medium text-slate-500">Subtotal</span>
+                            <span class="font-bold text-slate-900" id="summary-subtotal">${{ number_format($total, 2) }}</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span>Shipping</span>
-                            <span class="font-medium text-emerald-600">Calculated at checkout</span>
+                            <span class="font-medium text-slate-500">Shipping</span>
+                            <span class="font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md text-xs">Calculated at checkout</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span>Taxes</span>
-                            <span class="font-medium text-slate-900">Calculated at checkout</span>
+                            <span class="font-medium text-slate-500">Taxes</span>
+                            <span class="font-bold text-slate-900">Calculated at checkout</span>
                         </div>
                     </div>
                     
-                    <div class="flex justify-between items-end mb-8">
+                    <div class="flex justify-between items-end mb-8 border-b border-slate-100 pb-6">
                         <div>
-                            <span class="block text-sm font-semibold text-slate-900 uppercase tracking-wider mb-1">Estimated Total</span>
+                            <span class="block text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Estimated Total</span>
                         </div>
-                        <span class="text-2xl font-bold text-slate-900" id="summary-total">${{ number_format($total, 2) }}</span>
+                        <span class="text-3xl font-black text-slate-900 tracking-tight" id="summary-total">${{ number_format($total, 2) }}</span>
                     </div>
 
-                    <a href="{{ route('checkout') }}" class="w-full bg-primary-600 hover:bg-primary-700 text-white rounded-xl py-4 font-medium transition-all shadow-lg shadow-primary-600/20 flex items-center justify-center gap-2 mb-4">
-                        Proceed to Checkout <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <a href="{{ route('checkout') }}" class="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-2xl py-4 font-bold text-lg transition-all shadow-xl shadow-slate-900/20 transform hover:-translate-y-1 flex items-center justify-center gap-2 mb-6">
+                        Checkout Now <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                     </a>
                     
-                    <div class="flex items-center justify-center gap-2 text-xs text-slate-500">
+                    <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-500">
                         <span class="material-symbols-outlined text-[16px] text-emerald-500">lock</span> Secure Encrypted Checkout
                     </div>
                 </div>
             </div>
-            @endif
         </div>
+        @else
+        <div class="max-w-2xl mx-auto mt-8" id="cart-container">
+            <div class="bg-white rounded-3xl border border-slate-100 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] p-12 md:p-16 flex flex-col items-center justify-center text-center">
+                <div class="w-32 h-32 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-8 shadow-inner border border-slate-100">
+                    <span class="material-symbols-outlined text-[64px]">shopping_cart</span>
+                </div>
+                <h3 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">Your cart is empty</h3>
+                <p class="text-lg text-slate-500 mb-10 max-w-md mx-auto leading-relaxed">Looks like you haven't added any products to your cart yet. Discover our amazing collection!</p>
+                <a href="{{ route('products.index') }}" class="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-slate-900/20 transform hover:-translate-y-1">
+                    Start Shopping <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 
