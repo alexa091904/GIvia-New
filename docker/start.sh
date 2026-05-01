@@ -17,5 +17,8 @@ php artisan storage:link || true
 # Run database migrations
 php artisan migrate --force || true
 
+# Seed admin user safely
+php artisan db:seed --class=AdminUserSeeder --force || true
+
 # Start supervisor (manages nginx + php-fpm)
 exec /usr/bin/supervisord -c /etc/supervisord.conf
