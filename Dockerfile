@@ -13,13 +13,15 @@ RUN apk add --no-cache \
     zlib-dev \
     libzip-dev \
     oniguruma-dev \
-    mysql-client \
+    postgresql-client \
+    libpq-dev \
     git
 
 # Install PHP extensions
 RUN docker-php-ext-install \
     pdo \
-    pdo_mysql \
+    pdo_pgsql \
+    pgsql \
     mbstring \
     zip \
     exif \

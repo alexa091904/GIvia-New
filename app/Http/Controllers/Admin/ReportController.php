@@ -27,8 +27,8 @@ class ReportController extends Controller
         $dailySales = Order::whereBetween('created_at', [$startDate, $endDate])
                            ->where('status', '!=', 'cancelled')
                            ->select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(total) as total'))
-                           ->groupBy('date')
-                           ->orderBy('date', 'desc')
+                           ->groupBy(DB::raw('DATE(created_at)'))
+                           ->orderBy(DB::raw('DATE(created_at)'), 'desc')
                            ->limit(30)
                            ->get();
         
@@ -43,8 +43,8 @@ class ReportController extends Controller
         // Monthly stats
         $monthlyRevenue = Order::where('status', '!=', 'cancelled')
                                ->whereYear('created_at', now()->year)
-                               ->select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(total) as total'))
-                               ->groupBy('month')
+                               ->select(DB::raw('EXTRACT(MONTH FROM created_at) as month'), DB::raw('SUM(total) as total'))
+                               ->groupBy(DB::raw('EXTRACT(MONTH FROM created_at)'))
                                ->get();
         
         // Summary stats
