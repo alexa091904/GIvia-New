@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Givia | Orders Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fbf8ff",
+                        "surface-container-highest": "#e3e1eb",
+                        "on-primary-fixed-variant": "#1f3ba6",
+                        "outline": "#757684",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#a56600",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#dad9e2",
+                        "on-primary-container": "#fffbff",
+                        "inverse-on-surface": "#f1f0f9",
+                        "tertiary-fixed": "#ffddb9",
+                        "secondary-fixed": "#f0dbff",
+                        "on-secondary-fixed-variant": "#5c3187",
+                        "on-primary-fixed": "#001356",
+                        "inverse-primary": "#b9c3ff",
+                        "on-surface-variant": "#444653",
+                        "tertiary": "#835100",
+                        "surface-container-high": "#e9e7f1",
+                        "surface-bright": "#fbf8ff",
+                        "secondary": "#754aa1",
+                        "inverse-surface": "#2f3037",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5a3086",
+                        "surface-tint": "#3c55bf",
+                        "secondary-fixed-dim": "#dcb8ff",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary-container": "#ce9ffd",
+                        "on-tertiary-fixed-variant": "#663e00",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb964",
+                        "primary-fixed": "#dde1ff",
+                        "surface-variant": "#e3e1eb",
+                        "primary": "#3953bd",
+                        "outline-variant": "#c5c5d5",
+                        "on-secondary-fixed": "#2c0051",
+                        "primary-container": "#546cd7",
+                        "on-surface": "#1a1b22",
+                        "surface-container": "#eeedf6",
+                        "on-background": "#1a1b22",
+                        "surface-container-low": "#f4f2fc",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "column-gutter": "24px",
+                        "container-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-base": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .pill-shadow { box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] border-r bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] z-50 flex flex-col py-6">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-black text-xl">G</div>
+<div>
+<h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Givia</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-sm">Products</span>
+</a>
+<!-- Active State: Orders -->
+<a class="flex items-center gap-3 px-6 py-3 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20 border-l-4 border-indigo-600 font-semibold active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-sm">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="storage">storage</span>
+<span class="font-body-sm">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-sm">Users</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-body-sm">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 active:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 py-4">
+<div class="flex items-center gap-3 p-3 rounded-2xl bg-surface-container-low border border-slate-200/50">
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full object-cover" data-alt="A professional portrait of a senior administrator in a high-end corporate setting. The individual is wearing a charcoal tailored suit and smiling confidently. The lighting is soft and cinematic, with a blurred office background featuring glass partitions and warm ambient lights. The overall aesthetic is clean, premium, and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz0CJo6jZvuqk5a8TI0_AUCPiIUYMdDNPUKPSACHLaFictUvbpZBh7Y5jpJ2ie9bfij8qW5U3VJoXTd4MmZafAX_x2X2veVfw9XVIA6z9EdX5vLmo7FZjztJLFWiLJM9ObAGtyBGLNkBNabTbv3anziJ6cswQ_xTCL4rxzXimzjtEaOsmpXoYYGh6_jvl-qayjqHMj_utgORj49blCgG-Gy6x_q8RorPMbpOEJI3kG1cbUGOqjUMU4Toh_iu7UnCWnYgTrikPfvVB3"/>
+<div class="overflow-hidden">
+<p class="font-label-bold text-on-surface truncate">Alex Rivera</p>
+<p class="text-[10px] text-outline truncate">Senior Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between px-8 z-40">
+<div class="flex-1 max-w-xl">
+<div class="relative group focus-within:ring-2 focus-within:ring-indigo-500/20 rounded-lg transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-0 focus:outline-none placeholder:text-outline/60" placeholder="Global search orders, users, or products..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<button class="flex items-center gap-2 hover:bg-slate-100 p-1 pr-3 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600" data-icon="account_circle">account_circle</span>
+<span class="text-xs font-semibold">Admin Panel</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pl-[280px] pt-16 min-h-screen">
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="text-display-lg font-display-lg text-on-surface">Orders</h1>
+<p class="text-body-base text-outline mt-1">Manage and track customer orders, update statuses, and view transaction details.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-white px-6 py-2.5 rounded-xl font-label-bold flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Create Manual Order
+                    </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-slate-200/60 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] mb-8 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[240px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-xl">search</span>
+<input class="w-full bg-background border border-slate-200 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Search orders..." type="text"/>
+</div>
+<div class="flex items-center gap-2 min-w-[180px]">
+<span class="text-label-sm text-outline px-1">Status:</span>
+<select class="w-full bg-background border border-slate-200 rounded-xl py-2.5 px-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none cursor-pointer">
+<option>All Statuses</option>
+<option>Pending</option>
+<option>Processing</option>
+<option>Shipped</option>
+<option>Delivered</option>
+<option>Cancelled</option>
+</select>
+</div>
+<div class="flex items-center gap-2 min-w-[220px]">
+<span class="text-label-sm text-outline px-1">Date:</span>
+<div class="relative w-full">
+<input class="w-full bg-background border border-slate-200 rounded-xl py-2.5 px-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all cursor-pointer" type="date"/>
+</div>
+</div>
+<button class="flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 text-outline hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 text-outline hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">file_download</span>
+</button>
+</div>
+<!-- Data Table Card -->
+<div class="bg-white rounded-[16px] shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-slate-100 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50/50 border-b border-slate-100">
+<tr>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider">Order #</th>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider">Customer</th>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider">Total</th>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider">Payment</th>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider">Delivery Date</th>
+<th class="px-6 py-4 font-label-bold text-outline uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">#ORD-88223</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-[10px]">SC</div>
+<div>
+<p class="font-semibold text-sm">Sarah Chen</p>
+<p class="text-xs text-outline">sarah.c@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-medium">$1,240.00</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">
+                                    Processing
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm">credit_card</span>
+<span class="text-xs">Visa **** 4242</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-outline">Oct 24, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/10 rounded-lg text-primary transition-colors" title="View Details">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-outline transition-colors" title="Update Status">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">#ORD-88224</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-[10px]">JD</div>
+<div>
+<p class="font-semibold text-sm">James Donovan</p>
+<p class="text-xs text-outline">james.d@mail.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-medium">$345.50</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                                    Delivered
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span class="text-xs">MasterCard **** 1109</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-outline">Oct 22, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-outline transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">#ORD-88225</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-bold text-[10px]">MK</div>
+<div>
+<p class="font-semibold text-sm">Maya Kaur</p>
+<p class="text-xs text-outline">maya.kaur@web.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-medium">$2,110.00</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700">
+                                    Pending
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+<span class="text-xs">Apple Pay</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-outline">Oct 26, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-outline transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">#ORD-88226</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-[10px]">RW</div>
+<div>
+<p class="font-semibold text-sm">Robert White</p>
+<p class="text-xs text-outline">robert.w@domain.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-medium">$89.99</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700">
+                                    Shipped
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm">credit_card</span>
+<span class="text-xs">Visa **** 9012</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-outline">Oct 25, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-outline transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5 font-semibold text-primary">#ORD-88227</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container text-error flex items-center justify-center font-bold text-[10px]">LL</div>
+<div>
+<p class="font-semibold text-sm">Linda Lawson</p>
+<p class="text-xs text-outline">linda.l@services.org</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 font-medium">$450.00</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700">
+                                    Cancelled
+                                </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span class="text-xs">PayPal Balance</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-outline">—</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/10 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-outline transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50/30 flex items-center justify-between border-t border-slate-100">
+<p class="text-xs text-outline font-medium">Showing 1 to 5 of 124 orders</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:bg-white border border-transparent hover:border-slate-200 transition-all">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-white font-bold text-xs shadow-md shadow-primary/20">1</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:bg-white border border-transparent hover:border-slate-200 transition-all text-xs">2</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:bg-white border border-transparent hover:border-slate-200 transition-all text-xs">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:bg-white border border-transparent hover:border-slate-200 transition-all text-xs">25</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:bg-white border border-transparent hover:border-slate-200 transition-all">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Stats / Insights (Asymmetric Bento Grid Element) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+<div class="md:col-span-2 bg-gradient-to-r from-primary to-indigo-600 rounded-2xl p-6 text-white shadow-xl flex items-center justify-between">
+<div>
+<h3 class="text-title-sm font-semibold opacity-90">Daily Sales Momentum</h3>
+<p class="text-4xl font-bold mt-2">$24,850.00</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-white/20 px-2 py-0.5 rounded text-xs">+12.4% from yesterday</span>
+</div>
+</div>
+<div class="h-20 w-40 flex items-end gap-1">
+<div class="flex-1 bg-white/20 rounded-t h-[40%]"></div>
+<div class="flex-1 bg-white/30 rounded-t h-[60%]"></div>
+<div class="flex-1 bg-white/20 rounded-t h-[50%]"></div>
+<div class="flex-1 bg-white/40 rounded-t h-[80%]"></div>
+<div class="flex-1 bg-white/50 rounded-t h-[100%]"></div>
+<div class="flex-1 bg-white/30 rounded-t h-[70%]"></div>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+<div>
+<h3 class="text-label-bold text-outline uppercase">Active Sessions</h3>
+<p class="text-2xl font-bold text-on-surface mt-1">1,204</p>
+</div>
+<div class="mt-4 flex -space-x-2">
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Close-up portrait of a woman with vibrant, professional lighting in a modern workspace. Her expression is focused yet friendly. The shot is high-contrast with a clean, light-mode background consistent with a corporate creative environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz_kskmZHMg1X4-qsJ5dJm93g0rnp6NxGXEfdm55URXOtzFqa6pha5eadXjYL1EgMxg8Nj7EUQarQ_I5U0kWAoWePkFhG5G2nlnr1ZaYMiykxa1qS6Td3vrWv0tA03t_C0t4xdJIuBX4Un4BEB9V0mtcbRmQwyAETUd1Y-C-OEqSvk2O5krShQQ4MAqBKyhSZWI7WAukZZxoBnQvWZjyTMgQoErOCMGSTwoT5qj-xq-qbqzMtEo-ghScvi72VXIELIJ-YlSf4vimHi"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Portrait of a young male professional against a blurred urban background with cool morning light. The style is sharp and contemporary, reflecting a high-end tech workspace aesthetic. Soft shadows and a neutral color palette enhance the minimalist professional look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBflObZ6w_f0rXNvOdBP4AyL2Jz6fh5a5syGmifLIW5_-e6NOFhLvWvKKyTOW2QYhbrRzOhBTyjm63gllifxusxqO0HGiiC3UBjvA201r9B-fUOYqsUd6Y1OErCVqf8fvCR9HlcumZGylysy51uf825p-qDXIIlWAQPXYgZRdSETIxKV1kQGpdDxGWdo7RkAEuGtWU2kipDHWDWJ2nFtVdxwkzeXDOYmYqBov-MJbQiqp4TtwRUUjcLAcUxPPSQYXWtTT2MonMik9Sz"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Headshot of a middle-aged woman in a bright, airy office space. Natural light from a large window creates a clean, premium light-mode appearance. The composition is professional and modern, emphasizing clarity and corporate sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2vqQOLGWMQOxUytl0R9Pl1yeq6If8IfKADq20EzwrRwywnnXQSCZJKrHgIR6mpbJ5s8Trl-JhDapHXiIB53K789n9GS1ZHLmC6svcp5fN5ZdH4M8SdFOehevM2EQojDjbMDnnzPDO843BqJFPIQHUgoSjYxG9PGM27q3wpZa8zQNDIQSLPJGJSrd6knq1WNnHLTkLSgc2CpWStJKYhvuTbkdUC5akrjjMmt8khYNetSiGZBXjFXa4EGqt-EnNq7arJeNhToWjPGiM"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-outline">+1.1k</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

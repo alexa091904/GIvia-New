@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Givia - Platform Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#3953bd",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f2fc",
+                    "surface-container": "#eeedf6",
+                    "secondary": "#754aa1",
+                    "inverse-surface": "#2f3037",
+                    "surface-container-highest": "#e3e1eb",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#ce9ffd",
+                    "on-primary-fixed": "#001356",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1a1b22",
+                    "tertiary-fixed-dim": "#ffb964",
+                    "on-background": "#1a1b22",
+                    "outline": "#757684",
+                    "tertiary-container": "#a56600",
+                    "on-tertiary-fixed-variant": "#663e00",
+                    "background": "#fbf8ff",
+                    "surface-tint": "#3c55bf",
+                    "primary-fixed": "#dde1ff",
+                    "on-secondary-fixed": "#2c0051",
+                    "surface-dim": "#dad9e2",
+                    "secondary-fixed-dim": "#dcb8ff",
+                    "on-primary-container": "#fffbff",
+                    "inverse-on-surface": "#f1f0f9",
+                    "on-primary-fixed-variant": "#1f3ba6",
+                    "inverse-primary": "#b9c3ff",
+                    "on-tertiary-fixed": "#2b1700",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#5a3086",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#5c3187",
+                    "tertiary-fixed": "#ffddb9",
+                    "surface": "#fbf8ff",
+                    "on-surface-variant": "#444653",
+                    "surface-container-high": "#e9e7f1",
+                    "primary-fixed-dim": "#b9c3ff",
+                    "on-tertiary-container": "#fffbff",
+                    "outline-variant": "#c5c5d5",
+                    "secondary-fixed": "#f0dbff",
+                    "primary-container": "#546cd7",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#fbf8ff",
+                    "tertiary": "#835100",
+                    "surface-variant": "#e3e1eb",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "unit": "4px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "column-gutter": "24px",
+                    "container-margin": "24px"
+            },
+            "fontFamily": {
+                    "title-sm": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-base": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-effect {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .card-shadow {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+</head>
+<body class="bg-background font-body-base text-on-background min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] border-r border-slate-200/60 dark:border-slate-800/60 bg-white/80 backdrop-blur-xl dark:bg-slate-900/80 shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-50 flex flex-col p-4 gap-2">
+<div class="px-4 py-6 mb-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+</div>
+<div>
+<h1 class="text-2xl font-black text-indigo-600 dark:text-indigo-400">Givia</h1>
+<p class="text-xs font-medium text-slate-500">Enterprise Admin</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-['Inter'] text-sm font-medium">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-['Inter'] text-sm font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<span class="font-['Inter'] text-sm font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] text-sm font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Inter'] text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 relative before:absolute before:left-0 before:w-1 before:h-6 before:bg-indigo-600 before:rounded-r-full font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-slate-50 rounded-2xl dark:bg-slate-800/40">
+<div class="flex items-center gap-3 mb-3">
+<img alt="Admin user" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" data-alt="A professional headshot of a middle-aged executive man with a confident smile, wearing a tailored navy blue suit and a crisp white shirt. The lighting is soft and directional, typical of a high-end corporate studio setting. The background is a blurred modern office interior with subtle blue and grey tones, maintaining a premium and authoritative aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-HV0G8pIisGR8MH_J_TwYMjvLpCZR4VE28uubK6ewn_XqQ11_DCwC5hMMZljFvdt-JmksgzBfl22FZHc5NbcSjhRWuNk-9h7Wxk5gQU8TUfOiE4-Yl7FgMxnqmbLC4FbnJTrf4d4cE3eULEK008jpW7A2M9vQY9G_GrYm_8jvtMxMWBLEg3MHAe78WqR6uwobbSoaJ3Bs1CRdy-6AZ53wv6zgMtn0_AV-HKVE5of-QgiiyjyBEqrv3mcdUl_Ir20A8XN5IW3tYxWF"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate text-slate-900">Marcus Thorne</p>
+<p class="text-xs text-slate-500 truncate">System Admin</p>
+</div>
+</div>
+<button class="w-full py-2 bg-white text-slate-700 text-xs font-bold rounded-lg border border-slate-200 shadow-sm hover:bg-slate-50 transition-colors">
+                Log Out
+            </button>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 z-40 bg-white/70 backdrop-blur-lg dark:bg-slate-900/70 border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm h-16 w-[calc(100%-280px)] ml-[280px] flex items-center justify-between px-6">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-slate-100/50 border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-indigo-600/20 transition-all outline-none" placeholder="Search configurations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-lg text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-6 w-px bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="text-xs font-bold text-slate-900">Givia HQ</p>
+<p class="text-[10px] text-indigo-600 font-bold tracking-wider">PREMIUM PLAN</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="max-w-6xl mx-auto p-lg">
+<!-- Page Header -->
+<div class="mb-xl">
+<nav class="flex mb-4 text-xs font-medium text-slate-400 gap-2 items-center">
+<a class="hover:text-indigo-600 transition-colors" href="#">Admin</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-slate-600">Settings</span>
+</nav>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-slate-900 mb-1">Platform Settings</h2>
+<p class="font-body-base text-body-base text-slate-500">Manage your store configurations and preferences</p>
+</div>
+<div class="flex gap-3">
+<button class="px-md py-sm bg-white border border-slate-200 text-slate-700 font-label-bold text-label-bold rounded-lg hover:bg-slate-50 transition-all shadow-sm">
+                            Export Config
+                        </button>
+<button class="px-md py-sm bg-primary text-white font-label-bold text-label-bold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">cloud_upload</span>
+                            Push to Production
+                        </button>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-lg">
+<!-- Navigation Tabs (Sidebar Layout for settings) -->
+<div class="lg:col-span-1 space-y-2">
+<button class="w-full flex items-center justify-between px-md py-3 rounded-xl bg-white text-indigo-700 font-title-sm border border-indigo-100 shadow-md shadow-indigo-100/50 group transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-indigo-600 group-hover:scale-110 transition-transform">settings_suggest</span>
+<span class="font-title-sm text-title-sm">General</span>
+</div>
+<span class="material-symbols-outlined text-indigo-300">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-md py-3 rounded-xl hover:bg-slate-50 text-slate-600 font-title-sm transition-all group border border-transparent">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-indigo-500 transition-colors">mail</span>
+<span class="font-title-sm text-title-sm">Email Configuration</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-between px-md py-3 rounded-xl hover:bg-slate-50 text-slate-600 font-title-sm transition-all group border border-transparent">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-indigo-500 transition-colors">payments</span>
+<span class="font-title-sm text-title-sm">Payment Gateways</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-between px-md py-3 rounded-xl hover:bg-slate-50 text-slate-600 font-title-sm transition-all group border border-transparent">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-indigo-500 transition-colors">shield</span>
+<span class="font-title-sm text-title-sm">Security</span>
+</div>
+</button>
+<div class="pt-xl mt-xl border-t border-slate-200">
+<h4 class="px-md mb-md font-label-bold text-label-bold text-slate-400 uppercase tracking-widest">Connected Tools</h4>
+<div class="flex flex-wrap gap-2 px-md">
+<div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-sm">hub</span>
+</div>
+<div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-sm">api</span>
+</div>
+<div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-sm">webhook</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Configuration Panel -->
+<div class="lg:col-span-3">
+<div class="bg-white rounded-[16px] card-shadow border border-slate-100 overflow-hidden">
+<!-- Card Header -->
+<div class="px-xl py-lg border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+<div>
+<h3 class="font-headline-md text-headline-md text-slate-900">General Settings</h3>
+<p class="font-body-sm text-body-sm text-slate-500">Global metadata and regional preferences for your instance.</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
+<span class="material-symbols-outlined">tune</span>
+</div>
+</div>
+<!-- Card Content (Form) -->
+<div class="p-xl">
+<form class="space-y-xl">
+<!-- Group: Identity -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="font-label-bold text-label-bold text-slate-700">Store Name</label>
+<input class="w-full px-md py-3 rounded-lg border border-slate-200 bg-white text-slate-900 font-body-base focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all" type="text" value="Givia Flagship Store"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-bold text-label-bold text-slate-700">Contact Email</label>
+<input class="w-full px-md py-3 rounded-lg border border-slate-200 bg-white text-slate-900 font-body-base focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all" type="email" value="admin@givia-retail.com"/>
+</div>
+</div>
+<!-- Group: Localization -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg pt-4">
+<div class="space-y-sm">
+<label class="font-label-bold text-label-bold text-slate-700">Currency</label>
+<div class="relative">
+<select class="w-full px-md py-3 rounded-lg border border-slate-200 bg-white text-slate-900 font-body-base focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all appearance-none cursor-pointer">
+<option value="USD">USD - US Dollar</option>
+<option value="EUR">EUR - Euro</option>
+<option value="GBP">GBP - British Pound</option>
+<option value="JPY">JPY - Japanese Yen</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-label-bold text-label-bold text-slate-700">Timezone</label>
+<div class="relative">
+<select class="w-full px-md py-3 rounded-lg border border-slate-200 bg-white text-slate-900 font-body-base focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none transition-all appearance-none cursor-pointer">
+<option value="UTC">UTC (GMT +00:00)</option>
+<option value="EST">Eastern Standard Time (GMT -05:00)</option>
+<option value="PST">Pacific Standard Time (GMT -08:00)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Group: Advanced Toggles -->
+<div class="pt-xl space-y-md">
+<h4 class="font-label-bold text-label-bold text-slate-400 uppercase tracking-widest">Public Visibility</h4>
+<div class="flex items-center justify-between p-md rounded-xl bg-slate-50 border border-slate-100">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-indigo-500">visibility</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-slate-900">Maintenance Mode</p>
+<p class="font-body-sm text-body-sm text-slate-500">Show a placeholder page to customers during updates.</p>
+</div>
+</div>
+<button aria-checked="false" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-slate-200" role="switch">
+<span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<div class="flex items-center justify-between p-md rounded-xl bg-slate-50 border border-slate-100">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-indigo-500">language</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-slate-900">Multi-Language Support</p>
+<p class="font-body-sm text-body-sm text-slate-500">Enable automatic translation services for storefront content.</p>
+</div>
+</div>
+<button aria-checked="true" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-primary" role="switch">
+<span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 translate-x-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="pt-xl flex items-center justify-end gap-md">
+<p class="text-xs text-slate-400 italic">Last modified by Marcus T. yesterday at 4:12 PM</p>
+<button class="px-xl py-3 text-primary font-label-bold text-label-bold hover:bg-indigo-50 rounded-lg transition-colors" type="button">Discard</button>
+<button class="px-xl py-3 bg-primary text-white font-label-bold text-label-bold rounded-lg shadow-lg shadow-primary/30 hover:shadow-primary/40 active:scale-[0.98] transition-all" type="submit">Save Changes</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Supplemental Info Cards (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg mt-lg">
+<div class="bg-gradient-to-br from-secondary to-indigo-800 p-lg rounded-[16px] text-white flex flex-col justify-between min-h-[160px] shadow-xl">
+<div>
+<span class="material-symbols-outlined mb-sm">auto_awesome</span>
+<h5 class="font-title-sm text-title-sm mb-1">Instance Health</h5>
+<p class="text-white/70 font-body-sm">All core services are operational and running at 99.9% uptime.</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+<span class="text-[10px] font-bold tracking-widest uppercase">System Optimal</span>
+</div>
+</div>
+<div class="bg-white border border-slate-200 p-lg rounded-[16px] flex flex-col justify-between min-h-[160px] card-shadow">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-amber-500">database</span>
+<span class="px-2 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold rounded-full">85% USED</span>
+</div>
+<h5 class="font-title-sm text-title-sm text-slate-900 mb-1">Storage Usage</h5>
+<p class="text-slate-500 font-body-sm">Your media asset library is nearing capacity. Consider upgrading.</p>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick help (Contextual) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+</button>
+</body></html>

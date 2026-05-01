@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Users Management - Givia Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#f1f0f9",
+                      "primary-fixed": "#dde1ff",
+                      "on-tertiary-container": "#fffbff",
+                      "on-secondary-fixed-variant": "#5c3187",
+                      "primary-fixed-dim": "#b9c3ff",
+                      "on-secondary-fixed": "#2c0051",
+                      "inverse-surface": "#2f3037",
+                      "surface-variant": "#e3e1eb",
+                      "on-secondary": "#ffffff",
+                      "surface-bright": "#fbf8ff",
+                      "outline": "#757684",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#663e00",
+                      "on-background": "#1a1b22",
+                      "surface": "#fbf8ff",
+                      "background": "#fbf8ff",
+                      "on-secondary-container": "#5a3086",
+                      "on-primary-fixed": "#001356",
+                      "surface-container-highest": "#e3e1eb",
+                      "primary-container": "#546cd7",
+                      "on-surface": "#1a1b22",
+                      "on-primary-fixed-variant": "#1f3ba6",
+                      "secondary-fixed-dim": "#dcb8ff",
+                      "surface-container": "#eeedf6",
+                      "on-tertiary-fixed": "#2b1700",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#835100",
+                      "surface-container-high": "#e9e7f1",
+                      "on-surface-variant": "#444653",
+                      "tertiary-fixed-dim": "#ffb964",
+                      "tertiary-container": "#a56600",
+                      "on-primary-container": "#fffbff",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#f0dbff",
+                      "secondary-container": "#ce9ffd",
+                      "inverse-primary": "#b9c3ff",
+                      "on-error-container": "#93000a",
+                      "primary": "#3953bd",
+                      "outline-variant": "#c5c5d5",
+                      "surface-dim": "#dad9e2",
+                      "surface-tint": "#3c55bf",
+                      "surface-container-low": "#f4f2fc",
+                      "secondary": "#754aa1",
+                      "tertiary-fixed": "#ffddb9",
+                      "on-primary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-margin": "24px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "column-gutter": "24px",
+                      "unit": "4px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-base": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "title-sm": ["Inter"],
+                      "label-bold": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fbf8ff; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-slate-50/90 dark:bg-slate-950/90 backdrop-blur-xl border-r border-slate-200/50 dark:border-slate-800/50 shadow-[4px_0px_20px_rgba(0,0,0,0.02)] z-50 flex flex-col py-6 space-y-2">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<h2 class="text-2xl font-black text-indigo-600 dark:text-indigo-400">Givia</h2>
+<p class="font-sans text-[11px] font-bold uppercase tracking-widest text-slate-400">Enterprise Admin</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 flex items-center gap-3 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">dashboard</span>
+<span class="font-sans text-[13px] font-medium">Dashboard</span>
+</a>
+<!-- ACTIVE TAB: Users -->
+<a class="bg-indigo-50/50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 border-l-4 border-indigo-600 px-6 py-3 flex items-center gap-3 font-semibold" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-sans text-[13px] font-medium">Users</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 flex items-center gap-3 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">inventory_2</span>
+<span class="font-sans text-[13px] font-medium">Inventory</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 flex items-center gap-3 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">shopping_cart</span>
+<span class="font-sans text-[13px] font-medium">Orders</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 flex items-center gap-3 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">leaderboard</span>
+<span class="font-sans text-[13px] font-medium">Analytics</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 flex items-center gap-3 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">settings</span>
+<span class="font-sans text-[13px] font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 space-y-4">
+<button class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium text-sm transition-colors shadow-md shadow-indigo-200">
+                Support Center
+            </button>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 px-4 py-3 flex items-center gap-3 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">logout</span>
+<span class="font-sans text-[13px] font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 left-[280px] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md h-16 px-8 border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm z-40 flex items-center justify-between">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100/50 border-none rounded-lg text-sm focus:ring-2 focus:ring-indigo-500/20 transition-all outline-none" placeholder="Global Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-indigo-600 rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-slate-200"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900">Alex Rivers</p>
+<p class="text-[11px] text-slate-500 font-medium">Master Admin</p>
+</div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full border-2 border-indigo-100 group-hover:border-indigo-200 transition-colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKw76OYI3kdXDCXVnBdjIAiMKT7v0QBorsDJG_Ml2_2ts8V4Ca0EdPVVIxgT6Ft8_55vQ_LQN0pXYHXDWrUsNuIy807dwI_MNzvtKXnVkQgv9mtDVPyOB4ijnz28HsDfm6pNtWAwg-8jKWphhd4NqsMHNmHdXHLg0jNTn8f4DVwJSr8rgfY4rGNkXA-yQ5t_ERpcyLINnnOEQiYjDdbXhXcFjK8PXUMlBARpo0x_x9_atbnxX1g9jXi2o6kNBq-00f_Dzz9QdEh00u"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="mt-16 p-8 flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-background tracking-tight">Users</h1>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Manage and monitor your platform's user base.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                        Export Data
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                        Add New User
+                    </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="glass-panel p-4 rounded-2xl flex flex-col md:flex-row items-center gap-4">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all" placeholder="Search by name or email..." type="text"/>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<div class="relative w-full md:w-48">
+<select class="w-full appearance-none bg-white border border-slate-200 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all cursor-pointer">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Editor</option>
+<option>Viewer</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+<button class="p-3 bg-white border border-slate-200 rounded-xl text-slate-500 hover:text-indigo-600 hover:border-indigo-100 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="glass-panel rounded-2xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-100">
+<th class="px-6 py-4 font-label-bold text-label-bold text-slate-500 uppercase tracking-wider">User</th>
+<th class="px-6 py-4 font-label-bold text-label-bold text-slate-500 uppercase tracking-wider">Email</th>
+<th class="px-6 py-4 font-label-bold text-label-bold text-slate-500 uppercase tracking-wider">Role</th>
+<th class="px-6 py-4 font-label-bold text-label-bold text-slate-500 uppercase tracking-wider">Registered Date</th>
+<th class="px-6 py-4 font-label-bold text-label-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- User Row 1 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Sarah Hudson" class="w-10 h-10 rounded-full object-cover border border-indigo-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM2QkEXRP9KTgvkTiTn9S_rjULbezFsXR3rGq0QMM-xGcVyfUp1qY6lKzv-KKeGQ6QJoJm_uRv_XpYrqv3ftr-ypgvWf5mTGOCmQIIuM9KWMMzUOlSq2PRH_TwWYrtpVz3HrOaiECST5lo8e6epUYf2ktXBgkaE54aNI-ALzn_Gz_p1RawOdJLocpyfePx-YpjleeLaq68IWWrP2EyZBOkP3nIeRIfUC9zx9tImXpGfOIR9tUx23VhwYJ71DDlkQSnVcxK1a3QHMu3"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<p class="font-title-sm text-[15px] text-slate-900 leading-tight">Sarah Hudson</p>
+<p class="text-xs text-slate-500 font-medium">Last active 2m ago</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">sarah.h@givia.io</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-100">
+                                        Admin
+                                    </span>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">Oct 12, 2023</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Marcus Lane" class="w-10 h-10 rounded-full object-cover border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLq0oJteXLREwejNVPwgFav3IP0ecf2-UwYlCsYw1tYKgAw9uK3e6YUNWet9ePgvLcDgIAPN5XPf0TcwsFhNAMK6fCbG_vHFhvM8RQVQtKaJrwW-9rOK5OdxJS1kX6kOudBgJ0IsgbeTn4OHdEEJxKkfNyn3YrEJiZL7puP62LmyCIO6y3DwVMiZzHgWjyxK6N6eV6Znt3ge88ku4RhYAgH8uG30rH0Yjnk0zooCus3sSmG6Cu4N5JjAG3Mtej9sWJ8IqhrdJtBtE_"/>
+</div>
+<div>
+<p class="font-title-sm text-[15px] text-slate-900 leading-tight">Marcus Lane</p>
+<p class="text-xs text-slate-500 font-medium">Last active 1h ago</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">m.lane@enterprise.com</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-100 text-slate-600 border border-slate-200">
+                                        Editor
+                                    </span>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">Dec 05, 2023</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Elena Kostic" class="w-10 h-10 rounded-full object-cover border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXTf1sD7Wye-YMuTYiq7KVv9mveDd0kuS61sQUZaDMOhyo_bxDYIpvoN1NqU7qYBUFqWwJvHEFpm7eS8TWIaFr06-_dOp5cgrj6ORDcO7f7367Z8Lz_Q30qVvoOIOwnZwBLb6Z78Z3Exjbm13xM4gGlvpacOJduSjDVeSwYA4y_oKawoCyk2XKL-mNTZbfndtHzZcq0mngvo-SS0WLWsC8cgyLCX4VYJzROBLKjRYPzxGuf_xDnbIFjSFdAzgICXkqMHL-3puwiKtE"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-slate-300 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<p class="font-title-sm text-[15px] text-slate-900 leading-tight">Elena Kostic</p>
+<p class="text-xs text-slate-500 font-medium">Last active 3d ago</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">elena.k@domain.net</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-slate-100 text-slate-600 border border-slate-200">
+                                        Viewer
+                                    </span>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">Jan 18, 2024</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="James David" class="w-10 h-10 rounded-full object-cover border border-indigo-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCORj1ose5dtxmpCo6gVhbuXD-j3giej05CHuH8KIepsHta60nV8ApbjAlpKYkNuw-Sy8UiBuyAemSoeeuSbu_D5tO7gtCUICGWG7E9z6iB5tSj0OcnxeHfkNkqOvAC4fse1Kfl6eIqNSGHPGI3lbGa7YI1gAVLhFO-JHmKtVxkgFuakCDtThHAFkZKEe1skzXTm9LemmneBBzzQKfC2r-WR_qnLkbMhEtQNDaNlLeFG7q0xtXDC2mUdwlIpNe617RIzwK5TdFZGVrl"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<p class="font-title-sm text-[15px] text-slate-900 leading-tight">James David</p>
+<p class="text-xs text-slate-500 font-medium">Last active 15m ago</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">jdavid@givia.io</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-100">
+                                        Admin
+                                    </span>
+</td>
+<td class="px-6 py-4 font-body-sm text-slate-600">Feb 11, 2024</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50/30 border-t border-slate-100 flex items-center justify-between">
+<p class="text-sm text-slate-500 font-medium">Showing 1-10 of 2,450 users</p>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:bg-white transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-indigo-600 text-white font-semibold text-sm shadow-sm">1</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-white transition-colors text-sm font-medium">2</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-white transition-colors text-sm font-medium">3</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:bg-white transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Bento Stats Grid (Added for Premium Feel) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel p-6 rounded-3xl relative overflow-hidden group">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-4">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">group</span>
+</div>
+<h3 class="text-3xl font-bold text-slate-900">2,450</h3>
+<p class="text-sm font-semibold text-slate-500">Total Active Users</p>
+<div class="mt-4 flex items-center gap-2 text-emerald-600 text-xs font-bold bg-emerald-50 w-fit px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +12.5% this month
+                        </div>
+</div>
+<div class="absolute -right-6 -bottom-6 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">group</span>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-3xl relative overflow-hidden group">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 mb-4">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">verified_user</span>
+</div>
+<h3 class="text-3xl font-bold text-slate-900">184</h3>
+<p class="text-sm font-semibold text-slate-500">Platform Admins</p>
+<p class="mt-4 text-xs text-slate-400 font-medium italic">Privileged access managed</p>
+</div>
+<div class="absolute -right-6 -bottom-6 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">verified_user</span>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-3xl relative overflow-hidden group">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center text-rose-600 mb-4">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">person_alert</span>
+</div>
+<h3 class="text-3xl font-bold text-slate-900">12</h3>
+<p class="text-sm font-semibold text-slate-500">Pending Approvals</p>
+<div class="mt-4">
+<button class="text-xs font-bold text-rose-600 hover:underline">Review requests →</button>
+</div>
+</div>
+<div class="absolute -right-6 -bottom-6 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">person_alert</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decorative Elements -->
+<div class="fixed top-[-10%] right-[-5%] w-[400px] h-[400px] bg-indigo-500/5 blur-[120px] rounded-full -z-10"></div>
+<div class="fixed bottom-[5%] left-[20%] w-[300px] h-[300px] bg-secondary/5 blur-[100px] rounded-full -z-10"></div>
+</body></html>

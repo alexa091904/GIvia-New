@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Register | Givia</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@300,0,0,24&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8',
+                            500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81',
+                        },
+                        slate: {
+                            50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8',
+                            500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 20px 40px rgba(30, 41, 59, 0.05)',
+                        'glow': '0 0 20px rgba(79, 70, 229, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-sans antialiased text-slate-800 flex flex-col lg:flex-row min-h-screen relative overflow-hidden">
+
+    <!-- Left Side: Image/Branding -->
+    <div class="hidden lg:block w-1/2 relative bg-slate-900">
+            <img src="{{ asset('images/register_bg.png') }}" alt="Interior Design" class="absolute inset-0 w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+            
+            <div class="absolute inset-x-0 bottom-0 p-12 text-white">
+                <div class="glass-card bg-white/10 backdrop-blur-md border-white/20 p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-2">Join Givia Today</h3>
+                    <p class="text-white/80 text-sm leading-relaxed mb-6">
+                        Unlock exclusive access to premium collections, personalized recommendations, and seamless checkout experiences.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-sm text-white/90">
+                            <span class="material-symbols-outlined text-primary-400 text-[18px]">check_circle</span> Early access to sales
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white/90">
+                            <span class="material-symbols-outlined text-primary-400 text-[18px]">check_circle</span> Fast and secure checkout
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white/90">
+                            <span class="material-symbols-outlined text-primary-400 text-[18px]">check_circle</span> Track your orders easily
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Form -->
+        <div class="w-full lg:w-1/2 p-10 md:p-14 lg:px-24 xl:px-32 flex flex-col justify-center relative z-10">
+            
+            <!-- Background Decor (Moved inside right panel) -->
+            <div class="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-primary-100 rounded-full blur-[100px] -z-10 opacity-40"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-100 rounded-full blur-[100px] -z-10 opacity-40"></div>
+            
+            <a href="/" class="flex items-center gap-2 mb-8 w-max">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-purple-500 flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Givia</span>
+            </a>
+
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Create an account</h1>
+                <p class="text-slate-500 mb-8">Start your journey with us today.</p>
+
+                @if ($errors->any())
+                    <div class="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl mb-6 flex items-start gap-3">
+                        <span class="material-symbols-outlined text-[20px]">error</span>
+                        <div class="text-sm">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('register') }}" class="space-y-5">
+                    @csrf
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Full Name</label>
+                        <input type="text" name="name" value="{{ old('name') }}" required autofocus
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                            placeholder="e.g. Jane Doe">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Email</label>
+                        <input type="email" name="email" value="{{ old('email') }}" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                            placeholder="Enter your email">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Password</label>
+                        <input type="password" name="password" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                            placeholder="••••••••">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Confirm Password</label>
+                        <input type="password" name="password_confirmation" required
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                            placeholder="••••••••">
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-primary-600 text-white rounded-xl py-3.5 font-medium transition-all shadow-lg shadow-slate-900/10 hover:shadow-primary-600/20 mt-4">
+                        Create Account
+                    </button>
+                    
+                    <button type="button" class="w-full bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 rounded-xl py-3.5 font-medium transition-all flex items-center justify-center gap-2 mt-4">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
+                        Sign up with Google
+                    </button>
+                </form>
+
+                <p class="text-center text-sm text-slate-500 mt-8">
+                    Already have an account? <a href="{{ route('login') }}" class="font-semibold text-primary-600 hover:text-primary-700 transition-colors">Sign in</a>
+                </p>
+            </div>
+        </div>
+
+</body>
+</html>
