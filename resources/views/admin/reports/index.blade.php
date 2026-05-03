@@ -53,7 +53,7 @@
                 <div class="flex-1 bg-indigo-500/50 rounded-t-md h-[70%]"></div>
                 <div class="flex-1 bg-indigo-600 rounded-t-md h-[85%] relative">
                     <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap font-bold">
-                        Current: ${{ number_format($summary['total_revenue'] ?? 0) }}
+                        Current: ₱{{ number_format($summary['total_revenue'] ?? 0) }}
                     </div>
                 </div>
                 <div class="flex-1 bg-indigo-400/50 rounded-t-md h-[60%]"></div>
@@ -71,12 +71,12 @@
         <div class="mt-6 flex items-center gap-8 border-t border-slate-100 pt-6">
             <div>
                 <p class="text-xs font-bold text-slate-500 uppercase">Total Revenue</p>
-                <p class="text-3xl font-black text-slate-900">${{ number_format($summary['total_revenue'] ?? 0, 2) }}</p>
+                <p class="text-3xl font-black text-slate-900">₱{{ number_format($summary['total_revenue'] ?? 0, 2) }}</p>
             </div>
             <div class="h-10 w-[1px] bg-slate-200"></div>
             <div>
                 <p class="text-xs font-bold text-slate-500 uppercase">Average Order</p>
-                <p class="text-3xl font-black text-slate-900">${{ number_format($summary['average_order_value'] ?? 0, 2) }}</p>
+                <p class="text-3xl font-black text-slate-900">₱{{ number_format($summary['average_order_value'] ?? 0, 2) }}</p>
             </div>
         </div>
     </div>
@@ -161,7 +161,7 @@
                 @forelse($dailySales as $sale)
                 <tr class="hover:bg-slate-50/50 transition-colors">
                     <td class="px-4 py-3 text-sm font-medium text-slate-700">{{ \Carbon\Carbon::parse($sale->date)->format('M d, Y') }}</td>
-                    <td class="px-4 py-3 text-sm font-bold text-slate-900 text-right">${{ number_format($sale->total, 2) }}</td>
+                    <td class="px-4 py-3 text-sm font-bold text-slate-900 text-right">₱{{ number_format($sale->total, 2) }}</td>
                 </tr>
                 @empty
                 <tr>

@@ -156,7 +156,7 @@
                                     </a>
                                 </div>
                                 <div class="flex items-center justify-between mt-4">
-                                    <span class="text-lg font-bold text-slate-900">${{ number_format($product->price, 2) }}</span>
+                                    <span class="text-lg font-bold text-slate-900">₱{{ number_format($product->price, 2) }}</span>
                                     
                                     @if($product->stock > 0)
                                     <button type="button" onclick="addToCart({{ $product->id }})" class="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-primary-600 hover:border-primary-600 hover:text-white transition-all shadow-sm group-hover:shadow hover:-translate-y-0.5">

@@ -12,7 +12,7 @@
             <span class="text-xs font-semibold uppercase tracking-widest text-white">Our Story</span>
         </div>
         <h1 class="text-5xl font-bold text-white mb-6">Redefining Everyday Luxury</h1>
-        <p class="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">We believe that the objects you interact with every day should bring joy, elegance, and perfect functionality to your life.</p>
+        <p class="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">We believe that every gift should bring joy, meaning, and a personal touch, making every moment more special and memorable.</p>
     </div>
 </div>
 
@@ -22,10 +22,10 @@
         <div>
             <h2 class="text-3xl font-bold text-slate-900 mb-6">The Givia Philosophy</h2>
             <p class="text-slate-500 mb-4 leading-relaxed">
-                Founded in 2026, Givia started with a simple question: Why do we compromise on the things we use the most?
+                Founded in 2026, GIVIA started with a simple idea: making gift-giving more meaningful, accessible, and convenient for everyone.
             </p>
             <p class="text-slate-500 mb-8 leading-relaxed">
-                Our mission is to curate and design premium products that don't just fill a space, but elevate the entire experience of your home and lifestyle. We partner with master craftsmen and innovative designers worldwide to bring you a collection that is as beautiful as it is durable.
+                Our mission is to provide a seamless online shopping experience where customers can find, customize, and send thoughtful gifts anytime and anywhere. We aim to help users express their emotions through personalized items while supporting small business growth through digital innovation.
             </p>
             
             <div class="grid grid-cols-2 gap-8 border-t border-slate-100 pt-8">
@@ -42,7 +42,7 @@
         <div class="relative">
             <div class="absolute inset-0 bg-gradient-to-tr from-primary-500 to-purple-400 rounded-3xl transform -rotate-3 scale-105 opacity-20 blur-xl"></div>
             <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100 aspect-square">
-                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=1000" alt="Our Craft" class="w-full h-full object-cover">
+                <img src="https://somethingturquoise.com/wp-content/uploads/2018/11/BestBlanks.jpg" alt="Our Craft" class="w-full h-full object-cover">
             </div>
         </div>
     </div>

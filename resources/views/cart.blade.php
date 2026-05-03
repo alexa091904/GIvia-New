@@ -34,7 +34,7 @@
                                     </a>
                                     <div>
                                         <a href="{{ route('products.show', $item->product_id) }}" class="font-bold text-slate-900 hover:text-slate-600 transition-colors line-clamp-1">{{ $item->product->name }}</a>
-                                        <div class="text-sm font-semibold text-slate-500 mt-1">${{ number_format($item->product->price, 2) }}</div>
+                                        <div class="text-sm font-semibold text-slate-500 mt-1">₱{{ number_format($item->product->price, 2) }}</div>
                                         
                                         <!-- Mobile Remove -->
                                         <button onclick="removeFromCart({{ $item->id }})" class="sm:hidden text-xs text-rose-500 font-bold hover:text-rose-600 mt-2 flex items-center gap-1 transition-colors">
@@ -58,7 +58,7 @@
 
                                 <!-- Total & Remove -->
                                 <div class="col-span-1 sm:col-span-3 flex items-center justify-between sm:justify-end gap-4">
-                                    <div class="font-black text-slate-900 item-total">${{ number_format($item->product->price * $item->quantity, 2) }}</div>
+                                    <div class="font-black text-slate-900 item-total">₱{{ number_format($item->product->price * $item->quantity, 2) }}</div>
                                     <button onclick="removeFromCart({{ $item->id }})" class="hidden sm:flex w-10 h-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-all" title="Remove item">
                                         <span class="material-symbols-outlined text-[20px]">delete</span>
                                     </button>
@@ -80,7 +80,7 @@
                     <div class="space-y-4 text-sm text-slate-600 border-b border-slate-100 pb-6 mb-6">
                         <div class="flex justify-between items-center">
                             <span class="font-medium text-slate-500">Subtotal</span>
-                            <span class="font-bold text-slate-900" id="summary-subtotal">${{ number_format($total, 2) }}</span>
+                            <span class="font-bold text-slate-900" id="summary-subtotal">₱{{ number_format($total, 2) }}</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="font-medium text-slate-500">Shipping</span>
@@ -96,7 +96,7 @@
                         <div>
                             <span class="block text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Estimated Total</span>
                         </div>
-                        <span class="text-3xl font-black text-slate-900 tracking-tight" id="summary-total">${{ number_format($total, 2) }}</span>
+                        <span class="text-3xl font-black text-slate-900 tracking-tight" id="summary-total">₱{{ number_format($total, 2) }}</span>
                     </div>
 
                     <a href="{{ route('checkout') }}" class="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-2xl py-4 font-bold text-lg transition-all shadow-xl shadow-slate-900/20 transform hover:-translate-y-1 flex items-center justify-center gap-2 mb-6">

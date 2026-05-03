@@ -48,7 +48,7 @@
                     <div class="card-body">
                         <i class="fas fa-truck fa-3x text-primary"></i>
                         <h5 class="mt-3">Frssse Shipping</h5>
-                        <p>On orders over $50</p>
+                        <p>On orders over ₱50</p>
                     </div>
                 </div>
             </div>

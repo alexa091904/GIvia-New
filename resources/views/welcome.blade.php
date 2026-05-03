@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'GIVIA | Premium E-Commerce Experience')
+@section('title', 'GIVIA')
 
 @section('content')
 <!-- Hero Section -->
@@ -19,11 +19,11 @@
                     <span class="text-xs font-semibold uppercase tracking-widest text-slate-600">New Collection 2026</span>
                 </div>
                 <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-6 animate-slideUp">
-                    Elevate your <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-500">everyday living.</span>
+                    Create moments <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-500">through gifts.</span>
                 </h1>
                 <p class="text-lg text-slate-500 mb-8 leading-relaxed">
-                    Discover our curated selection of premium products designed to bring elegance and functionality to your modern lifestyle.
+                    Discover a curated collection of gifts and personalized items designed to make every moment meaningful and every experience more convenient.
                 </p>
                 <div class="flex flex-wrap items-center gap-4">
                     <a href="/shop" class="px-8 py-4 bg-slate-900 hover:bg-primary-600 text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/20 hover:shadow-primary-600/30 flex items-center gap-2">
@@ -54,7 +54,7 @@
             <div class="relative">
                 <div class="absolute inset-0 bg-gradient-to-tr from-primary-500 to-purple-400 rounded-3xl transform rotate-3 scale-105 opacity-20 blur-xl"></div>
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/50 aspect-[4/5] md:aspect-square bg-white">
-                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&q=80&w=1000" alt="Premium Products" class="w-full h-full object-cover">
+                    <img src="https://www.litcandleco.ph/cdn/shop/files/Lit_Custom_Candles.png?v=1725116210&width=1500" alt="Premium Products" class="w-full h-full object-cover">
                     <!-- Glass floating badge -->
                     <div class="absolute bottom-6 -left-6 glass-card px-6 py-4 rounded-2xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
                         <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
@@ -75,34 +75,7 @@
 <section class="border-y border-slate-100 bg-white">
     <div class="max-w-[1280px] mx-auto px-6 py-12">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-            <div class="flex items-center gap-4 px-4">
-                <span class="material-symbols-outlined text-3xl text-primary-500">local_shipping</span>
-                <div>
-                    <h4 class="font-semibold text-slate-900">Free Shipping</h4>
-                    <p class="text-sm text-slate-500">On all orders over $150</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 px-4 pt-8 md:pt-0">
-                <span class="material-symbols-outlined text-3xl text-primary-500">headset_mic</span>
-                <div>
-                    <h4 class="font-semibold text-slate-900">24/7 Support</h4>
-                    <p class="text-sm text-slate-500">Dedicated assistance</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 px-4 pt-8 md:pt-0">
-                <span class="material-symbols-outlined text-3xl text-primary-500">verified_user</span>
-                <div>
-                    <h4 class="font-semibold text-slate-900">Secure Payments</h4>
-                    <p class="text-sm text-slate-500">100% safe checkout</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 px-4 pt-8 md:pt-0">
-                <span class="material-symbols-outlined text-3xl text-primary-500">assignment_return</span>
-                <div>
-                    <h4 class="font-semibold text-slate-900">Easy Returns</h4>
-                    <p class="text-sm text-slate-500">30-day money back</p>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
@@ -146,7 +119,7 @@
                                 <p class="text-sm text-slate-500 line-clamp-2 mb-4">{{ Str::limit($product->description, 80) }}</p>
                             </div>
                             <div class="flex items-center justify-between mt-auto">
-                                <span class="text-lg font-bold text-slate-900">${{ number_format($product->price, 2) }}</span>
+                                <span class="text-lg font-bold text-slate-900">₱{{ number_format($product->price, 2) }}</span>
                                 <button class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 group-hover:bg-primary-600 group-hover:text-white transition-colors" onclick="event.preventDefault(); window.location='{{ route('products.show', $product->id) }}';">
                                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </button>
@@ -172,39 +145,5 @@
     </div>
 </section>
 
-<!-- Categories -->
-<section class="py-24 bg-white">
-    <div class="max-w-[1280px] mx-auto px-6">
-        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Shop by Category</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="/shop" class="relative rounded-2xl overflow-hidden aspect-[4/3] group">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Tech">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-8">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Technology</h3>
-                        <span class="text-white/80 text-sm group-hover:text-white flex items-center gap-1 transition-colors">Shop Now <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                    </div>
-                </div>
-            </a>
-            <a href="/shop" class="relative rounded-2xl overflow-hidden aspect-[4/3] group">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Apparel">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-8">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Apparel</h3>
-                        <span class="text-white/80 text-sm group-hover:text-white flex items-center gap-1 transition-colors">Shop Now <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                    </div>
-                </div>
-            </a>
-            <a href="/shop" class="relative rounded-2xl overflow-hidden aspect-[4/3] group">
-                <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Home">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-8">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Home & Living</h3>
-                        <span class="text-white/80 text-sm group-hover:text-white flex items-center gap-1 transition-colors">Shop Now <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
+
 @endsection

@@ -32,17 +32,34 @@ class OrderController extends Controller
         $oldStatus = $order->status;
         $order->update(['status' => $request->status]);
         
-        if ($order->delivery) {
-            $order->delivery->update([
-                'status' => $request->status,
-                'estimated_delivery' => $request->status === 'shipped' ? now()->addDays(3) : $order->delivery->estimated_delivery
-            ]);
-        } else {
-            Delivery::create([
-                'order_id' => $order->id,
-                'status' => $request->status,
-                'estimated_delivery' => now()->addDays(5)
-            ]);
+        // Map order status to delivery status
+        $deliveryStatus = null;
+        switch ($request->status) {
+            case 'pending':
+            case 'processing':
+                $deliveryStatus = 'preparing';
+                break;
+            case 'shipped':
+                $deliveryStatus = 'shipped';
+                break;
+            case 'delivered':
+                $deliveryStatus = 'delivered';
+                break;
+        }
+        
+        if ($deliveryStatus) {
+            if ($order->delivery) {
+                $order->delivery->update([
+                    'status' => $deliveryStatus,
+                    'estimated_delivery' => $request->status === 'shipped' ? now()->addDays(3) : $order->delivery->estimated_delivery
+                ]);
+            } else {
+                Delivery::create([
+                    'order_id' => $order->id,
+                    'status' => $deliveryStatus,
+                    'estimated_delivery' => now()->addDays(5)
+                ]);
+            }
         }
         
         // If delivered, mark payment as completed for COD

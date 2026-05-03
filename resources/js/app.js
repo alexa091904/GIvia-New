@@ -3,7 +3,7 @@
  */
 
 // Load the bootstrap configuration
-require('./bootstrap');
+import './bootstrap';
 
 // Your custom GIVIA JavaScript
 console.log('GIVIA Gift Shop is ready!');

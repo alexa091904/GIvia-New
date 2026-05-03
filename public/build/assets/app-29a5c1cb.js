@@ -1,1 +1,0 @@
-require("./bootstrap");console.log("GIVIA Gift Shop is ready!");window.GIVIA={cart:{add:function(o,t=1){console.log("Adding product "+o+" to cart")},remove:function(o){console.log("Removing item "+o+" from cart")},update:function(o,t){console.log("Updating item "+o+" to quantity "+t)}}};

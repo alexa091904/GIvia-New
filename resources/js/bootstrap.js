@@ -4,10 +4,12 @@
  */
 
 // Load Lodash
-window._ = require('lodash');
+import _ from 'lodash';
+window._ = _;
 
 // Load Axios for HTTP requests
-window.axios = require('axios');
+import axios from 'axios';
+window.axios = axios;
 
 // Set default header for CSRF protection
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

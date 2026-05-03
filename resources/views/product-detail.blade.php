@@ -52,7 +52,7 @@
                     <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">{{ $product->name }}</h1>
                     
                     <div class="flex items-end gap-4 mb-6">
-                        <span class="text-3xl font-bold text-slate-900">${{ number_format($product->price, 2) }}</span>
+                        <span class="text-3xl font-bold text-slate-900">₱{{ number_format($product->price, 2) }}</span>
                     </div>
 
                     <p class="text-slate-500 leading-relaxed">{{ $product->description }}</p>
@@ -114,7 +114,7 @@
                         </div>
                         <div>
                             <p class="text-xs font-semibold text-slate-900">Free Shipping</p>
-                            <p class="text-[10px] text-slate-500">Orders over $150</p>
+                            <p class="text-[10px] text-slate-500">Orders over ₱150</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
@@ -157,7 +157,7 @@
                             <p class="text-sm text-slate-500 line-clamp-2 mb-4">{{ Str::limit($related->description, 60) }}</p>
                         </div>
                         <div class="flex items-center justify-between mt-auto">
-                            <span class="text-lg font-bold text-slate-900">${{ number_format($related->price, 2) }}</span>
+                            <span class="text-lg font-bold text-slate-900">₱{{ number_format($related->price, 2) }}</span>
                             <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 group-hover:bg-primary-600 group-hover:text-white transition-colors">
                                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </div>

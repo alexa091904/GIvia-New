@@ -69,16 +69,7 @@
                                 <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Postal Code</label>
                                 <input type="text" name="postal_code" value="{{ old('postal_code') }}" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all">
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Country</label>
-                                <select name="country" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all appearance-none">
-                                    <option value="US">United States</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="UK">United Kingdom</option>
-                                    <option value="AU">Australia</option>
-                                </select>
-                            </div>
-                            <div>
+                            <div class="md:col-span-2">
                                 <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Phone</label>
                                 <input type="tel" name="phone" value="{{ old('phone') }}" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all">
                             </div>
@@ -95,35 +86,24 @@
                         <div class="space-y-4">
                             <label class="relative flex items-start gap-4 p-4 border border-primary-500 bg-primary-50/50 rounded-xl cursor-pointer">
                                 <div class="flex items-center h-5">
-                                    <input type="radio" name="payment_method" value="online_banking" checked class="w-4 h-4 text-primary-600 border-slate-300 focus:ring-primary-500">
+                                    <input type="radio" name="payment_method" value="cash_on_delivery" checked class="w-4 h-4 text-primary-600 border-slate-300 focus:ring-primary-500">
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-sm font-semibold text-slate-900">Credit Card / Online Banking (Demo)</span>
+                                        <span class="text-sm font-semibold text-slate-900">Cash on Delivery (COD)</span>
                                         <div class="flex gap-1">
-                                            <span class="material-symbols-outlined text-slate-400">credit_card</span>
+                                            <span class="material-symbols-outlined text-slate-400">payments</span>
                                         </div>
                                     </div>
-                                    <p class="text-xs text-slate-500 mt-1">Pay securely with your credit or debit card.</p>
+                                    <p class="text-xs text-slate-500 mt-1">Pay with cash upon delivery of your order.</p>
                                 </div>
                             </label>
 
-                            <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl space-y-4">
-                                <div class="md:col-span-2">
-                                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Card Number</label>
-                                    <input type="text" placeholder="0000 0000 0000 0000" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all" readonly value="4242 4242 4242 4242">
-                                    <p class="text-[10px] text-slate-400 mt-1">This is a demo environment. No real payment is processed.</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Expiry</label>
-                                        <input type="text" placeholder="MM/YY" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all" readonly value="12/28">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">CVC</label>
-                                        <input type="text" placeholder="123" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all" readonly value="123">
-                                    </div>
-                                </div>
+                            <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                                <p class="text-sm text-slate-600 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[20px] text-primary-500">info</span>
+                                    Please ensure you have the exact amount ready upon delivery. Our couriers may not carry change.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -151,7 +131,7 @@
                                     <div class="flex-1">
                                         <h4 class="font-semibold text-slate-900 text-sm line-clamp-1">{{ $item->product ? $item->product->name : 'Unknown Product' }}</h4>
                                         <p class="text-xs text-slate-500 mt-1">Qty: {{ $item->quantity }}</p>
-                                        <p class="text-sm font-bold text-slate-900 mt-1">${{ number_format(($item->product ? $item->product->price : 0) * $item->quantity, 2) }}</p>
+                                        <p class="text-sm font-bold text-slate-900 mt-1">₱{{ number_format(($item->product ? $item->product->price : 0) * $item->quantity, 2) }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -160,15 +140,15 @@
                         <div class="space-y-4 text-sm text-slate-600 border-t border-slate-100 pt-6 mb-6">
                             <div class="flex justify-between items-center">
                                 <span>Subtotal</span>
-                                <span class="font-medium text-slate-900">${{ number_format($total, 2) }}</span>
+                                <span class="font-medium text-slate-900">₱{{ number_format($total, 2) }}</span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span>Shipping</span>
-                                <span class="font-medium text-slate-900">$10.00</span>
+                                <span class="font-medium text-slate-900">₱10.00</span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span>Taxes (Estimated)</span>
-                                <span class="font-medium text-slate-900">${{ number_format($total * 0.05, 2) }}</span>
+                                <span class="font-medium text-slate-900">₱{{ number_format($total * 0.05, 2) }}</span>
                             </div>
                         </div>
                         
@@ -176,11 +156,11 @@
                             <div>
                                 <span class="block text-sm font-semibold text-slate-900 uppercase tracking-wider mb-1">Total</span>
                             </div>
-                            <span class="text-2xl font-bold text-primary-600">${{ number_format($total + 10 + ($total * 0.05), 2) }}</span>
+                            <span class="text-2xl font-bold text-primary-600">₱{{ number_format($total + 10 + ($total * 0.05), 2) }}</span>
                         </div>
 
                         <button type="submit" class="w-full bg-slate-900 hover:bg-primary-600 text-white rounded-xl py-4 font-medium transition-all shadow-lg shadow-slate-900/10 hover:shadow-primary-600/20 flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined text-[20px]">lock</span> Pay Now
+                            <span class="material-symbols-outlined text-[20px]">local_shipping</span> Place Order
                         </button>
                     </div>
                 </div>

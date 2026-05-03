@@ -14,66 +14,20 @@
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@300,0,0,24&display=swap" rel="stylesheet" />
 
-    <!-- Fix: Patch MutationObserver before Tailwind CDN loads to prevent null-node crash -->
-    <script>
-        (function() {
-            var _MO = window.MutationObserver;
-            window.MutationObserver = function(cb) {
-                var obs = new _MO(cb);
-                var _observe = obs.observe.bind(obs);
-                obs.observe = function(target, opts) {
-                    if (!target || !(target instanceof Node)) return;
-                    return _observe(target, opts);
-                };
-                return obs;
-            };
-            window.MutationObserver.prototype = _MO.prototype;
-        })();
-    </script>
-    <!-- Tailwind CSS: config MUST be defined before CDN loads -->
-    <script>
-        tailwind = window.tailwind || {};
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            300: '#a5b4fc',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5', // Indigo Accent
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
-                        },
-                        slate: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b', // Primary Slate
-                            900: '#0f172a',
-                        }
-                    },
-                    boxShadow: {
-                        'glass': '0 20px 40px rgba(30, 41, 59, 0.05)',
-                        'glow': '0 0 20px rgba(79, 70, 229, 0.2)',
-                    }
-                }
-            }
+    @php
+        $manifestPath = public_path('build/manifest.json');
+        if (file_exists($manifestPath)) {
+            $manifest = json_decode(file_get_contents($manifestPath), true);
+            $cssFile = $manifest['resources/css/app.css']['file'] ?? null;
+            $jsFile = $manifest['resources/js/app.js']['file'] ?? null;
         }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @endphp
+    @if(isset($cssFile))
+        <link rel="stylesheet" href="{{ asset('build/' . $cssFile) }}">
+    @endif
+    @if(isset($jsFile))
+        <script type="module" src="{{ asset('build/' . $jsFile) }}"></script>
+    @endif
 
     <style>
         /* Glassmorphism utilities */

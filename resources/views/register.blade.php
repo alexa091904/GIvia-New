@@ -59,107 +59,123 @@
 </head>
 <body class="bg-white font-sans antialiased text-slate-800 flex flex-col lg:flex-row min-h-screen relative overflow-hidden">
 
-    <!-- Left Side: Image/Branding -->
-    <div class="hidden lg:block w-1/2 relative bg-slate-900">
-            <img src="{{ asset('images/register_bg.png') }}" alt="Interior Design" class="absolute inset-0 w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+    <!-- Left Side: Form -->
+    <div class="w-full lg:w-1/2 p-10 md:p-14 lg:px-24 xl:px-32 flex flex-col justify-center relative z-10">
+        
+        <!-- Background Decor (Moved inside left panel) -->
+        <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary-100 rounded-full blur-[100px] -z-10 opacity-40"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-100 rounded-full blur-[100px] -z-10 opacity-40"></div>
             
-            <div class="absolute inset-x-0 bottom-0 p-12 text-white">
-                <div class="glass-card bg-white/10 backdrop-blur-md border-white/20 p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-2">Join Givia Today</h3>
-                    <p class="text-white/80 text-sm leading-relaxed mb-6">
-                        Unlock exclusive access to premium collections, personalized recommendations, and seamless checkout experiences.
-                    </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-sm text-white/90">
-                            <span class="material-symbols-outlined text-primary-400 text-[18px]">check_circle</span> Early access to sales
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-white/90">
-                            <span class="material-symbols-outlined text-primary-400 text-[18px]">check_circle</span> Fast and secure checkout
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-white/90">
-                            <span class="material-symbols-outlined text-primary-400 text-[18px]">check_circle</span> Track your orders easily
-                        </li>
-                    </ul>
-                </div>
+        <a href="/" class="flex items-center gap-2 mb-8 w-max">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-purple-500 flex items-center justify-center text-white">
+                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
             </div>
+            <span class="text-xl font-bold tracking-tight text-slate-900">Givia</span>
+        </a>
+
+        <div>
+            <h1 class="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Create an account</h1>
+            <p class="text-slate-500 mb-8">Join us today. Please enter your details below.</p>
+
+            @if ($errors->any())
+                <div class="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl mb-6 flex items-start gap-3">
+                    <span class="material-symbols-outlined text-[20px]">error</span>
+                    <div class="text-sm">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                @csrf
+                
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Full Name</label>
+                    <input type="text" name="name" value="{{ old('name') }}" required autofocus
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                        placeholder="Enter your full name">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Email</label>
+                    <input type="email" name="email" value="{{ old('email') }}" required
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                        placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Password</label>
+                    <input type="password" name="password" required
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                        placeholder="••••••••">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Confirm Password</label>
+                    <input type="password" name="password_confirmation" required
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
+                        placeholder="••••••••">
+                </div>
+
+                <button type="submit" class="w-full bg-slate-900 hover:bg-primary-600 text-white rounded-xl py-3.5 font-medium transition-all shadow-lg shadow-slate-900/10 hover:shadow-primary-600/20 mt-6">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="text-center text-sm text-slate-500 mt-8">
+                Already have an account? <a href="{{ route('login') }}" class="font-semibold text-primary-600 hover:text-primary-700 transition-colors">Sign in here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Right Side: Emotional & Warm Visual Container -->
+    <div class="hidden lg:block w-1/2 relative bg-orange-50 overflow-hidden order-first lg:order-none">
+        
+        <!-- Blurred Collage Background -->
+        <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 scale-110 blur-[8px] opacity-70 filter">
+            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 8s;" alt="Gift">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8892bc952f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 10s;" alt="Celebration">
+            <img src="https://images.unsplash.com/photo-1512418490979-92798cec1380?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 9s;" alt="Warm gift">
+            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 11s;" alt="Party">
         </div>
 
-        <!-- Right Side: Form -->
-        <div class="w-full lg:w-1/2 p-10 md:p-14 lg:px-24 xl:px-32 flex flex-col justify-center relative z-10">
-            
-            <!-- Background Decor (Moved inside right panel) -->
-            <div class="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-primary-100 rounded-full blur-[100px] -z-10 opacity-40"></div>
-            <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-purple-100 rounded-full blur-[100px] -z-10 opacity-40"></div>
-            
-            <a href="/" class="flex items-center gap-2 mb-8 w-max">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-purple-500 flex items-center justify-center text-white">
-                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-                </div>
-                <span class="text-xl font-bold tracking-tight text-slate-900">Givia</span>
-            </a>
+        <!-- Soft warm lighting overlays -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-rose-500/40 via-orange-400/40 to-amber-300/40 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
 
-            <div>
-                <h1 class="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Create an account</h1>
-                <p class="text-slate-500 mb-8">Start your journey with us today.</p>
-
-                @if ($errors->any())
-                    <div class="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl mb-6 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-[20px]">error</span>
-                        <div class="text-sm">
-                            @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-
-                <form method="POST" action="{{ route('register') }}" class="space-y-5">
-                    @csrf
-                    
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Full Name</label>
-                        <input type="text" name="name" value="{{ old('name') }}" required autofocus
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
-                            placeholder="e.g. Jane Doe">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Email</label>
-                        <input type="email" name="email" value="{{ old('email') }}" required
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
-                            placeholder="Enter your email">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Password</label>
-                        <input type="password" name="password" required
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
-                            placeholder="••••••••">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Confirm Password</label>
-                        <input type="password" name="password_confirmation" required
-                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all placeholder:text-slate-400"
-                            placeholder="••••••••">
-                    </div>
-
-                    <button type="submit" class="w-full bg-slate-900 hover:bg-primary-600 text-white rounded-xl py-3.5 font-medium transition-all shadow-lg shadow-slate-900/10 hover:shadow-primary-600/20 mt-4">
-                        Create Account
-                    </button>
-                    
-                    <button type="button" class="w-full bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 rounded-xl py-3.5 font-medium transition-all flex items-center justify-center gap-2 mt-4">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
-                        Sign up with Google
-                    </button>
-                </form>
-
-                <p class="text-center text-sm text-slate-500 mt-8">
-                    Already have an account? <a href="{{ route('login') }}" class="font-semibold text-primary-600 hover:text-primary-700 transition-colors">Sign in</a>
-                </p>
-            </div>
+        <!-- Subtle Heart & Ribbon Motifs -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <style>
+                @keyframes float-icon {
+                    0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+                    50% { transform: translateY(-20px) rotate(var(--rot)); }
+                }
+                .float-heart { animation: float-icon 5s ease-in-out infinite; --rot: 12deg; }
+                .float-ribbon { animation: float-icon 6s ease-in-out infinite 1s; --rot: -12deg; }
+                .float-star { animation: float-icon 7s ease-in-out infinite 2s; --rot: 45deg; }
+            </style>
+            <span class="material-symbols-outlined absolute top-[20%] right-[25%] text-rose-200/40 text-6xl float-heart">favorite</span>
+            <span class="material-symbols-outlined absolute bottom-[25%] left-[20%] text-rose-200/30 text-8xl float-ribbon">redeem</span>
+            <span class="material-symbols-outlined absolute top-[40%] left-[10%] text-amber-100/30 text-5xl float-star">star</span>
         </div>
+
+        <!-- Central Content Container -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-12 z-10 text-center">
+            
+            <h1 class="text-7xl lg:text-8xl font-black text-white tracking-tighter drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] mb-4">
+                GIVIA
+            </h1>
+            
+            <p class="text-2xl lg:text-3xl font-medium text-rose-50 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] mt-2">
+                Make every moment special.
+            </p>
+
+        </div>
+    </div>
 
 </body>
 </html>

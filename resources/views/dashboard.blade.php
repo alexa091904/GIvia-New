@@ -96,7 +96,7 @@
                                                 {{ $order->created_at->format('M d, Y') }}
                                             </td>
                                             <td class="px-8 py-5 text-sm font-black text-slate-900">
-                                                ${{ number_format($order->total, 2) }}
+                                                ₱{{ number_format($order->total, 2) }}
                                             </td>
                                             <td class="px-8 py-5">
                                                 @php
@@ -166,7 +166,7 @@
                                         <h4 class="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1 text-sm">
                                             {{ $product->name }}
                                         </h4>
-                                        <p class="text-xs font-semibold text-slate-500 mt-0.5">${{ number_format($product->price, 2) }}</p>
+                                        <p class="text-xs font-semibold text-slate-500 mt-0.5">₱{{ number_format($product->price, 2) }}</p>
                                     </div>
                                 </a>
                                 @endforeach

@@ -120,11 +120,7 @@
                     <button type="submit" class="w-full bg-slate-900 hover:bg-primary-600 text-white rounded-xl py-3.5 font-medium transition-all shadow-lg shadow-slate-900/10 hover:shadow-primary-600/20 mt-4">
                         Sign In
                     </button>
-                    
-                    <button type="button" class="w-full bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 rounded-xl py-3.5 font-medium transition-all flex items-center justify-center gap-2 mt-4">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
-                        Sign in with Google
-                    </button>
+
                 </form>
 
                 <p class="text-center text-sm text-slate-500 mt-8">
@@ -133,24 +129,49 @@
             </div>
         </div>
 
-        <!-- Right Side: Image/Branding -->
-        <div class="hidden lg:block w-1/2 relative bg-slate-900">
-            <img src="{{ asset('images/login_bg.png') }}" alt="Interior" class="absolute inset-0 w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+        <!-- Right Side: Emotional & Warm Visual Container -->
+        <div class="hidden lg:block w-1/2 relative bg-orange-50 overflow-hidden">
             
-            <div class="absolute inset-x-0 bottom-0 p-12 lg:p-24 text-white">
-                <div class="glass-card bg-white/10 backdrop-blur-md border-white/20 p-8 rounded-2xl">
-                    <p class="text-lg font-medium leading-relaxed mb-6">
-                        "Givia has completely transformed how I furnish my home. The quality and curation are unmatched in the modern eCommerce space."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/100?img=5" class="w-10 h-10 rounded-full border border-white/30" alt="Avatar">
-                        <div>
-                            <p class="text-sm font-semibold">Sarah Jenkins</p>
-                            <p class="text-xs text-white/70">Interior Designer</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Blurred Collage Background -->
+            <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 scale-110 blur-[8px] opacity-70 filter">
+                <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 8s;" alt="Gift">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8892bc952f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 10s;" alt="Celebration">
+                <img src="https://images.unsplash.com/photo-1512418490979-92798cec1380?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 9s;" alt="Warm gift">
+                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl animate-pulse" style="animation-duration: 11s;" alt="Party">
+            </div>
+
+            <!-- Soft warm lighting overlays -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-rose-500/40 via-orange-400/40 to-amber-300/40 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
+
+            <!-- Subtle Heart & Ribbon Motifs -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                <style>
+                    @keyframes float-icon {
+                        0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+                        50% { transform: translateY(-20px) rotate(var(--rot)); }
+                    }
+                    .float-heart { animation: float-icon 5s ease-in-out infinite; --rot: 12deg; }
+                    .float-ribbon { animation: float-icon 6s ease-in-out infinite 1s; --rot: -12deg; }
+                    .float-star { animation: float-icon 7s ease-in-out infinite 2s; --rot: 45deg; }
+                </style>
+                <span class="material-symbols-outlined absolute top-[20%] right-[25%] text-rose-200/40 text-6xl float-heart">favorite</span>
+                <span class="material-symbols-outlined absolute bottom-[25%] left-[20%] text-rose-200/30 text-8xl float-ribbon">redeem</span>
+                <span class="material-symbols-outlined absolute top-[40%] left-[10%] text-amber-100/30 text-5xl float-star">star</span>
+            </div>
+
+            <!-- Central Content Container -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-12 z-10 text-center">
+                
+                <h1 class="text-7xl lg:text-8xl font-black text-white tracking-tighter drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] mb-4">
+                    GIVIA
+                </h1>
+                
+                <p class="text-2xl lg:text-3xl font-medium text-rose-50 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] mt-2">
+                    Make every moment special.
+                </p>
+
             </div>
         </div>
 

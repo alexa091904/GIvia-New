@@ -59,7 +59,6 @@ class CheckoutController extends Controller
             'address' => 'required|string',
             'city' => 'required|string',
             'postal_code' => 'required|string',
-            'country' => 'required|string',
             'payment_method' => 'required|string'
         ]);
         
@@ -71,7 +70,7 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Cart is empty');
         }
         
-        $fullAddress = $request->address . ', ' . $request->city . ', ' . $request->postal_code . ', ' . $request->country;
+        $fullAddress = $request->address . ', ' . $request->city . ', ' . $request->postal_code;
         
         \Illuminate\Support\Facades\DB::beginTransaction();
         try {
