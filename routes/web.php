@@ -102,3 +102,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // ============= TESTING ROUTES (keep as is) =============
 // ... all your existing testing routes (/list-views, /force-products, /make-admin, etc.) ...
+
+Route::get('/setup-db', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true]);
+        return 'Database migrated and seeded successfully! You can now go back to your website.';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
